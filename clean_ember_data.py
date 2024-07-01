@@ -1,5 +1,8 @@
+import csv
+import os
 import pandas as pd
 
-file = 'C:\Users\WiersmaL\OneDrive - AECOM\Projects\ember-wholesaleprices-allcountries.csv'
-df = pd.read_csv(file)
-print(df.head())
+def clean_ember_data(filename):
+    df = pd.read_csv(filename)
+
+    return df
