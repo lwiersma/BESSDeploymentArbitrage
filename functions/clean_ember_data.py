@@ -10,5 +10,4 @@ def clean_ember_data(filename):
             ['ISO3 Code',
              'Datetime (UTC)'],
              axis=1)
-
     return df
