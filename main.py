@@ -1,7 +1,4 @@
 import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-from functions.clean_price_data import *
 from functions.simulate_battery import *
 from functions.analyse_simulation import *
 from functions.visualise_weekly_simulation import *
@@ -10,9 +7,6 @@ from functions.visualise_monthly_simulation import *
 #Track simulation time
 tic = time.time()
 
-##################################################
-##              Simulation variables            ##
-##################################################
 filename = 'C:\\Users\\WiersmaL\\OneDrive - AECOM\\Projects\\ember-wholesaleprices-allcountries.csv'
 country_of_interest = 'Germany'
 start_time = pd.Timestamp(year=2023, 
@@ -28,9 +22,6 @@ max_discharge_cycles = 2.0 #(-)
 fraction_initial_state_of_charge = 0.5 #(-)
 efficiency = 0.95 #(-)
 time_horizon = 24 #(h)
-##################################################
-##              Simulation variables            ##
-##################################################
 
 all_hourly_charges, all_hourly_discharges, all_hourly_state_of_energy, all_daily_discharge_throughput = simulate_battery(
     initial_level = (discharge_energy_capacity * fraction_initial_state_of_charge),
