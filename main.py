@@ -10,6 +10,9 @@ from functions.visualise_monthly_simulation import *
 #Track simulation time
 tic = time.time()
 
+##################################################
+##              Simulation variables            ##
+##################################################
 filename = 'C:\\Users\\WiersmaL\\OneDrive - AECOM\\Projects\\ember-wholesaleprices-allcountries.csv'
 country_of_interest = 'Germany'
 start_time = pd.Timestamp(year=2023, 
@@ -17,19 +20,22 @@ start_time = pd.Timestamp(year=2023,
                           day=1, 
                           hour=10)
 
-max_discharge_power_capacity = 1000 #(kW)
-max_charge_power_capacity = 1000 #(kW)
+max_discharge_power_capacity = 750 #(kW)
+max_charge_power_capacity = 750 #(kW)
 discharge_energy_capacity = 2000 #(kWh)
 
 max_discharge_cycles = 2.0 #(-)
 fraction_initial_state_of_charge = 0.5 #(-)
 efficiency = 0.95 #(-)
 time_horizon = 24 #(h)
+##################################################
+##              Simulation variables            ##
+##################################################
 
 all_hourly_charges, all_hourly_discharges, all_hourly_state_of_energy, all_daily_discharge_throughput = simulate_battery(
     initial_level = (discharge_energy_capacity * fraction_initial_state_of_charge),
-    filename,
-    country_of_interest,
+    filename = filename,
+    country_of_interest = country_of_interest,
     max_discharge_power_capacity = max_discharge_power_capacity,
     max_charge_power_capacity = max_charge_power_capacity,
     discharge_energy_capacity = discharge_energy_capacity,
