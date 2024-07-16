@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from functions.clean_ember_data import *
+from functions.clean_price_data import *
 
 def analyse_simulation(filename, 
                        country_of_interest, 
@@ -11,7 +11,7 @@ def analyse_simulation(filename,
                        all_daily_discharge_throughput,
                        discharge_energy_capacity,
                        fraction_initial_state_of_charge):
-    df_analysis = clean_ember_data(filename, 
+    df_analysis = clean_price_data(filename, 
                                    country_of_interest)
     end_time = start_time + pd.Timedelta(hours=(8760-1))
     df_analysis = df_analysis[start_time:end_time]

@@ -3,9 +3,11 @@ import pandas as pd
 import time
 
 from functions.optimise_linear_problem import *
+from functions.clean_price_data import *
 
 def simulate_battery(initial_level,
-                     price_data,
+                     filename,
+                     country_of_interest,
                      max_discharge_power_capacity,
                      max_charge_power_capacity,
                      discharge_energy_capacity,
@@ -13,8 +15,6 @@ def simulate_battery(initial_level,
                      max_daily_discharged_throughput,
                      time_horizon,
                      start_day):
-    #Track simulation time
-    tic = time.time()
     
     #Initialize output variables
     all_hourly_charges = np.empty(0)
@@ -51,8 +51,8 @@ def simulate_battery(initial_level,
     
         #Retrieve the price data that will be used to calculate the
         #objective
-        prices = \
-        price_data[start_time:end_time]['Price (EUR/kWh)'].values
+        price_data = clean_price_data(filename, country_of_interest)
+        prices = price_data[start_time:end_time]['Price (EUR/kWh)'].values
                       
         #Create model and objective
         battery.set_objective(prices)
@@ -107,10 +107,6 @@ def simulate_battery(initial_level,
         
         #Initial level for next period is the end point of current period
         initial_level = state_of_energy_from_t2[-1]
-        
-    toc = time.time()
-        
-    print('Total simulation time: ' + str(toc-tic) + ' seconds')
 
     return all_hourly_charges, all_hourly_discharges, \
         all_hourly_state_of_energy,\
