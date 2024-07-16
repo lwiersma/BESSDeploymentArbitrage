@@ -1,9 +1,5 @@
-import pulp
-import os
 import numpy as np
 import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
 import time
 
 from functions.optimise_linear_problem import *
@@ -56,7 +52,7 @@ def simulate_battery(initial_level,
         #Retrieve the price data that will be used to calculate the
         #objective
         prices = \
-        price_data[start_time:end_time]['Price (EUR/MWhe)'].values
+        price_data[start_time:end_time]['Price (EUR/kWh)'].values
                       
         #Create model and objective
         battery.set_objective(prices)
