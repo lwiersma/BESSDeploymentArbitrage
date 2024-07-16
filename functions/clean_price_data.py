@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-def clean_ember_data(filename, country_of_interest):
+def clean_price_data(filename, country_of_interest):
     df = pd.read_csv(filename)
     df['Datetime (UTC)'] = pd.to_datetime(df['Datetime (UTC)'])
     df = df.loc[df['Country'].isin([country_of_interest]),
