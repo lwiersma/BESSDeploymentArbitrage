@@ -8,7 +8,11 @@ from functions.visualise_monthly_simulation import *
 
 tic = time.time()
 
-filename = 'C:\\Users\\WiersmaL\\OneDrive - AECOM\\Projects\\ember-wholesaleprices-allcountries.csv'
+##########################################
+##          Set-up Simulation           ##
+##########################################
+
+filename = 'C:\\Users\\WiersmaL\\OneDrive - AECOM\\Projects\\day_ahead_wholesale_electricity_prices_allcountries.csv'
 country_of_interest = 'Germany'
 start_time = pd.Timestamp(year=2023, 
                           month=1, 
@@ -23,6 +27,10 @@ max_discharge_cycles = 2.0 #(-)
 fraction_initial_state_of_charge = 0.5 #(-)
 efficiency = 0.95 #(-)
 time_horizon = 24 #(h)
+
+##########################################
+##          Set-up Simulation           ##
+##########################################
 
 all_hourly_charges, all_hourly_discharges, all_hourly_state_of_energy, all_daily_discharge_throughput = simulate_battery(
     initial_level = (discharge_energy_capacity * fraction_initial_state_of_charge),
@@ -50,4 +58,4 @@ visualise_weekly_simulation(df_analysis)
 visualise_monthly_simulation(df_analysis)
 
 toc = time.time()
-print('Total simulation time: ' + str(toc-tic) + ' seconds')
+print('Time for simulation, analysis, and visualisation: ' + str(toc-tic) + ' seconds')
