@@ -1,4 +1,5 @@
 import pandas as pd
+import time
 from functions.simulate_battery import *
 from functions.analyse_simulation import *
 from functions.visualise_weekly_simulation import *
