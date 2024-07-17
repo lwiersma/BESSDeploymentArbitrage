@@ -1,11 +1,11 @@
 import pandas as pd
 import time
+from functions.clean_price_data import *
 from functions.simulate_battery import *
 from functions.analyse_simulation import *
 from functions.visualise_weekly_simulation import *
 from functions.visualise_monthly_simulation import *
 
-#Track simulation time
 tic = time.time()
 
 filename = 'C:\\Users\\WiersmaL\\OneDrive - AECOM\\Projects\\ember-wholesaleprices-allcountries.csv'
@@ -26,8 +26,7 @@ time_horizon = 24 #(h)
 
 all_hourly_charges, all_hourly_discharges, all_hourly_state_of_energy, all_daily_discharge_throughput = simulate_battery(
     initial_level = (discharge_energy_capacity * fraction_initial_state_of_charge),
-    filename = filename,
-    country_of_interest = country_of_interest,
+    price_data = clean_price_data(filename, country_of_interest),
     max_discharge_power_capacity = max_discharge_power_capacity,
     max_charge_power_capacity = max_charge_power_capacity,
     discharge_energy_capacity = discharge_energy_capacity,

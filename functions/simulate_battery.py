@@ -1,13 +1,10 @@
 import numpy as np
 import pandas as pd
-import time
 
 from functions.optimise_linear_problem import *
-from functions.clean_price_data import *
 
 def simulate_battery(initial_level,
-                     filename,
-                     country_of_interest,
+                     price_data,
                      max_discharge_power_capacity,
                      max_charge_power_capacity,
                      discharge_energy_capacity,
@@ -47,12 +44,9 @@ def simulate_battery(initial_level,
         start_time = start_day \
         + pd.Timedelta(day_count, unit='days')
         end_time = start_time + pd.Timedelta(time_horizon-1, unit='hours')
-        #print(start_time, end_time)
-    
-        #Retrieve the price data that will be used to calculate the
-        #objective
-        price_data = clean_price_data(filename, country_of_interest)
-        prices = price_data[start_time:end_time]['Price (EUR/kWh)'].values
+
+        prices = \
+        price_data[start_time:end_time]['Price (EUR/kWh)'].values
                       
         #Create model and objective
         battery.set_objective(prices)
